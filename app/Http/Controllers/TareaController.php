@@ -25,7 +25,7 @@ class TareaController extends Controller
      */
     public function create()
     {
-        //
+        return view('tareas.create');
     }
 
     /**
@@ -36,7 +36,8 @@ class TareaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Tarea::create($request->all());
+        return redirect('/');
     }
 
     /**
@@ -47,7 +48,7 @@ class TareaController extends Controller
      */
     public function show(Tarea $tarea)
     {
-        //
+        return view('tareas.show',['tarea' => $tarea]);
     }
 
     /**

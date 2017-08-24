@@ -17,7 +17,7 @@ class CreateTareasTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('descripcion');
-            $table->boolean('hecho');
+            $table->boolean('hecho')->default(false);
             $table->timestamps();
         });
     }
