@@ -5,8 +5,10 @@
 <ul class="list-group">
   @foreach ($tareas as $tarea)
     <li class="list-group-item">
-      <a href="{{ route('tarea.show', $tarea) }}">{{$tarea->nombre}}</a>
+      <a href="{{ route('tarea.show', $tarea) }}">{{$tarea->nombre}} - {{$tarea->nombre_categoria}}</a>
     </li>
   @endforeach
 </ul>
+<hr>
+<h2>La categoria Casa tiene {{$categoriaCasa->tasks_count}} tareas</h2>
 @endsection
