@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Tarea;
+use App\Category;
 use Illuminate\Http\Request;
 
 class TareaController extends Controller
@@ -15,7 +16,15 @@ class TareaController extends Controller
     public function index()
     {
         $tareas = Tarea::all();
-        return view('tareas.index',['tareas' => $tareas]);
+
+
+
+      foreach ($tareas as $tarea) {
+          $tarea->nombre_categoria = $tarea->category->name;
+        }
+        $categoriaCasa = Category::withCount('tasks')->where('id',2)->first();
+
+        return view('tareas.index',['tareas' => $tareas, 'categoriaCasa' => $categoriaCasa]);
     }
 
     /**
