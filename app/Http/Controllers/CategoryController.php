@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Tarea;
 use App\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class TareaController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,16 +14,7 @@ class TareaController extends Controller
      */
     public function index()
     {
-
-      $tareas = Tarea::paginate(10);
-
-      foreach ($tareas as $tarea) {
-          $tarea->nombre_categoria = $tarea->category->name;
-      }
-
-      $categories = Category::withCount('tasks')->get();
-
-      return view('tareas.index',['tareas' => $tareas, 'categories' => $categories]);
+        //
     }
 
     /**
@@ -35,8 +24,7 @@ class TareaController extends Controller
      */
     public function create()
     {
-        $categorias = Category::all();
-        return view('tareas.create',['categorias'=> $categorias]);
+        return view('categories.create');
     }
 
     /**
@@ -47,28 +35,30 @@ class TareaController extends Controller
      */
     public function store(Request $request)
     {
-        Tarea::create($request->all());
-        return redirect('/');
+      Category::create($request->all());
+      return redirect('/');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Tarea  $tarea
+     * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Tarea $tarea)
+    public function show(Category $category)
     {
-        return view('tareas.show',['tarea' => $tarea]);
+        $category_with_tasks = Category::with('tasks')->find($category->id);
+
+        return view('categories.show', ['category'=>$category_with_tasks]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Tarea  $tarea
+     * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tarea $tarea)
+    public function edit(Category $category)
     {
         //
     }
@@ -77,10 +67,10 @@ class TareaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Tarea  $tarea
+     * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tarea $tarea)
+    public function update(Request $request, Category $category)
     {
         //
     }
@@ -88,13 +78,11 @@ class TareaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Tarea  $tarea
+     * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tarea $tarea)
+    public function destroy(Category $category)
     {
-        //$t = Tarea::find($tarea->id);
-      $tarea->delete();
-      return redirect('/');
+        //
     }
 }

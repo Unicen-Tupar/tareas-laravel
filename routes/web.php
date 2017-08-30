@@ -13,3 +13,4 @@
 
 Route::get('/', 'TareaController@index');
 Route::resource('tarea','TareaController');
+Route::resource('category','CategoryController');
