@@ -22,9 +22,4 @@
   @endforeach
 </ul>
 {{ $tareas->links() }}
-@foreach ($categories as $category)
-  @if($category->tasks_count > 0)
-    <h2>La categoria <a href="{{route('category.show', $category)}}">{{$category->name}}</a> tiene {{$category->tasks_count}} tareas</h2>
-  @endif
-@endforeach
 @endsection
