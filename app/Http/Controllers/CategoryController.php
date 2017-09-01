@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('categories.index');
     }
 
     /**
@@ -51,7 +51,6 @@ class CategoryController extends Controller
 
         return view('categories.show', ['category'=>$category_with_tasks]);
     }
-
     /**
      * Show the form for editing the specified resource.
      *
