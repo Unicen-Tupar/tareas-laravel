@@ -15,6 +15,9 @@
           <button type="submit" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
         </form>
       </div>
+      <div class="pull-right">
+        <a href="{{route('tarea.edit',$tarea)}}" class="btn btn-default btn-xs" ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+      </div>
     </li>
   @endforeach
 </ul>
