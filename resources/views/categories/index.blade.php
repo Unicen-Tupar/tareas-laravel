@@ -10,8 +10,16 @@
        <li class="list-group-item">
           <a href="{{route('category.show',$category)}}" class="list-group-item"><span class="badge">{{$cantTasks[$category->name]}}</span>
           {{$category->name}}</a>
+          <form action="{{route('category.destroy', $category)}}" method="post">
+            {{csrf_field()}}
+            {{method_field('DELETE')}}
+            <input class="btn btn-danger" type="submit" name="Eliminar" value="Eliminar Categoria">
+          </form>
       </li>
       @endforeach
+      @if(sizeof($cantTasks)==0)
+        <li class="list-group-item">No hay Categorias creadas</li>
+      @endif
     </ul>
     {{ $categories->links() }}
   </div>
