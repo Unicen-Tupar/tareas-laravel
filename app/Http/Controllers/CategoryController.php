@@ -14,7 +14,13 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('categories.index');
+      $categories = Category::paginate(5);
+      $category_with_tasks = Category::withCount('tasks')->get();
+      foreach ($category_with_tasks as $cat_task){
+        $category_task[$cat_task->name] = $cat_task->tasks_count;
+      }
+
+      return view('categories.index',['categories' => $categories, 'cantTasks' => $category_task]);
     }
 
     /**
