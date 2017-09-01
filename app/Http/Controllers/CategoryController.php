@@ -15,6 +15,7 @@ class CategoryController extends Controller
     public function index()
     {
       $categories = Category::paginate(5);
+      $category_task=array();
       $category_with_tasks = Category::withCount('tasks')->get();
       foreach ($category_with_tasks as $cat_task){
         $category_task[$cat_task->name] = $cat_task->tasks_count;
@@ -88,6 +89,11 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+      $categoria = Category::with('tasks')->find($category->id);
+      foreach($categoria->tasks as $tarea){
+        $tarea->delete();
+      }
+      $category->delete();
+      return redirect('category');
     }
 }
