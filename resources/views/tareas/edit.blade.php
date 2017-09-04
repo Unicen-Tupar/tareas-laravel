@@ -1,15 +1,16 @@
 @extends('layouts.app')
 @section('main')
   <a href="{{route('tarea.index')}}">Volver</a>
-  <form action="{{route('tarea.store')}}" method="post">
+  <form action="{{route('tarea.update', $tarea)}}" method="post">
     {{ csrf_field() }}
+    {{ method_field('PUT') }}
     <div class="form-group">
       <label for="nombre">Nombre:</label>
-      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre de la Tarea">
+      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre de la Tarea" value='{{$tarea->nombre}}'>
     </div>
     <div class="form-group">
       <label for="descripcion">Descripción:</label>
-      <textarea id="descripcion" name="descripcion" rows="8" cols="80"></textarea>
+      <textarea id="descripcion" name="descripcion" rows="8" cols="80">{{$tarea->descripcion}}</textarea>
     </div>
     <div class="form-group">
       <label for="hecho">Hecho:</label>
@@ -23,6 +24,6 @@
         @endforeach
       </select>
     </div>
-    <button type="submit" class="btn btn-default">Crear</button>
+    <button type="submit" class="btn btn-default">Modificar</button>
   </form>
 @endsection
