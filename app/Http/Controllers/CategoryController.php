@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::withCount('tasks')->get();
+        return view('categories.index', ['categories' => $categories]);
     }
 
     /**
@@ -36,7 +37,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
       Category::create($request->all());
-      return redirect('/');
+      return redirect('/category');
     }
 
     /**
@@ -83,6 +84,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+      $category->delete();
+      return redirect('/category');
     }
 }
