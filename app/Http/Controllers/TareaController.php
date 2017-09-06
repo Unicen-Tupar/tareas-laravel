@@ -70,7 +70,8 @@ class TareaController extends Controller
      */
     public function edit(Tarea $tarea)
     {
-        //
+      $categorias = Category::all();
+      return view('tareas.edit',['tarea'=> $tarea, 'categories'=> $categorias]);
     }
 
     /**
@@ -82,7 +83,18 @@ class TareaController extends Controller
      */
     public function update(Request $request, Tarea $tarea)
     {
-        //
+      $tarea->nombre = $request->nombre;
+      $tarea->descripcion = $request->descripcion;
+
+      if ($request->hecho == ''){
+        $tarea->hecho = false;
+      }
+      else{
+        $tarea->hecho = $request->hecho;
+      }
+
+      $tarea->save();
+      return redirect('/');
     }
 
     /**
