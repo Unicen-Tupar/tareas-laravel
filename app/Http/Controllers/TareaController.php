@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Tarea;
 use App\Category;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class TareaController extends Controller
 {
+
+      public function __construct()
+      {
+        $this->middleware('auth');
+      }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +24,7 @@ class TareaController extends Controller
     public function index()
     {
 
-      $tareas = Tarea::paginate(10);
+      $tareas = Tarea::where('user_id','=',Auth::id())->paginate(10);
 
       foreach ($tareas as $tarea) {
           $tarea->nombre_categoria = $tarea->category->name;
@@ -36,7 +43,8 @@ class TareaController extends Controller
     public function create()
     {
         $categorias = Category::all();
-        return view('tareas.create',['categorias'=> $categorias]);
+        $usuarios = User::all();
+        return view('tareas.create',['categorias'=> $categorias, 'usuarios'=> $usuarios]);
     }
 
     /**
@@ -83,15 +91,12 @@ class TareaController extends Controller
      */
     public function update(Request $request, Tarea $tarea)
     {
-        $tarea->nombre = $request->nombre;
-        $tarea->descripcion = $request->descripcion;
-        if ($request->hecho==''){
+        #TODO Mejorar esto
+        $tarea->update($request->all());
+        if($request->hecho == ''){
           $tarea->hecho = 0;
+          $tarea->save();
         }
-        else{
-          $tarea->hecho = $request->hecho;
-        }
-        $tarea->save();
         return redirect('/');
     }
 

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('main')
+@section('content')
   <a href="{{route('tarea.index')}}">Volver</a>
   <form action="{{route('tarea.update',$tarea)}}" method="post">
     {{csrf_field()}}
@@ -14,7 +14,7 @@
     </div>
     <div class="form-group">
       <label for="hecho">Hecho:</label>
-      <input type="checkbox" name="hecho" id="hecho" value="{{$tarea->hecho}}">
+      <input type="checkbox" name="hecho" id="hecho" value="1" @if($tarea->hecho) checked @endif>
     </div>
     <div class="form-group">
       <label for="category_id">Categoría:</label>

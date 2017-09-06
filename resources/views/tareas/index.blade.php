@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('main')
+@section('content')
 <h1>Lista de Tareas</h1>
 <a href="{{ route('tarea.create') }}">Crear Nueva Tarea</a>
 | <a href="{{ route('category.create') }}">Crear Nueva Categoria</a>
