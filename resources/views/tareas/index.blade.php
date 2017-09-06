@@ -3,6 +3,7 @@
 <h1>Lista de Tareas</h1>
 <a href="{{ route('tarea.create') }}">Crear Nueva Tarea</a>
 | <a href="{{ route('category.create') }}">Crear Nueva Categoria</a>
+| <a href="{{ route('category.create') }}">Listar Categorias</a>
 <ul class="list-group">
   @foreach ($tareas as $tarea)
     <li class="list-group-item">
