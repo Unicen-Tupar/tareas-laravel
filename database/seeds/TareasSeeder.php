@@ -12,7 +12,7 @@ class TareasSeeder extends Seeder
     public function run()
     {
       for ($i=0; $i < 1000 ; $i++) {
-         App\Tarea::create([ 'nombre' => str_random(10),'descripcion' => str_random(100),'category_id' => rand(1,4)]);
+         App\Tarea::create([ 'nombre' => str_random(10),'descripcion' => str_random(100),'category_id' => rand(1,6)]);
       }
     }
 }
