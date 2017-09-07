@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('main')
+@section('content')
   <a href="{{route('tarea.index')}}">Volver</a>
   <form action="{{route('category.store')}}" method="post">
     {{ csrf_field() }}
