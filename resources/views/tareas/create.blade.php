@@ -23,23 +23,21 @@
         @endforeach
       </select>
     </div>
-    @if ($usuarios->find(Auth::id())->isManager == 1)
+    <label for="user_id">Asignar a:</label>
+    @cannot('create')
     <div class="form-group">
-      <label for="user_id">Asignar a:</label>
       <select class="form-control"  name="user_id" id="user_id">
         @foreach ($usuarios as $usuario)
         <option value={{$usuario->id}}@if($usuario->id == Auth::id()) selected @endif>{{$usuario->name}} ({{$usuario->email}})</option>
         @endforeach
       </select>
     </div>
-  @else
-    <label for="user_id">Asignar a:</label>
       <div class="form-group">
             <select disabled  id="listaDeshabilitada" class="form-control">
                <option value={{$usuarios->find(Auth::id())->id}}@if($usuarios->find(Auth::id())->id == Auth::id()) selected @endif>{{$usuarios->find(Auth::id())->name}} ({{$usuarios->find(Auth::id())->email}})</option>
             </select>
       </div>
-   @endif
+    @endcan
     <button type="submit" class="btn btn-default">Crear</button>
   </form>
 @endsection
