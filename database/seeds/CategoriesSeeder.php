@@ -14,6 +14,9 @@ class CategoriesSeeder extends Seeder
          App\Category::create(['name'=> 'Trabajo']);
          App\Category::create(['name'=> 'Casa']);
          App\Category::create(['name'=> 'Facultad']);
-         App\Category::create(['name'=> 'Otras']);
+         App\Category::create(['name'=> 'Biblioteca']);
+         App\Category::create(['name'=> 'Oficina']);
+         App\Category::create(['name'=> 'Otros']);
+
     }
 }

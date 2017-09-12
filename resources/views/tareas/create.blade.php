@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('main')
+@section('content')
   <a href="{{route('tarea.index')}}">Volver</a>
   <form action="{{route('tarea.store')}}" method="post">
     {{ csrf_field() }}
@@ -20,6 +20,14 @@
       <select class="form-control"  name="category_id" id="category_id">
         @foreach ($categorias as $categoria)
           <option value={{$categoria->id}}>{{$categoria->name}}</option>
+        @endforeach
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="user_id">Asignar a:</label>
+      <select class="form-control"  name="user_id" id="user_id">
+        @foreach ($usuarios as $usuario)
+        <option value={{$usuario->id}}@if($usuario->id == Auth::id()) selected @endif>{{$usuario->name}} ({{$usuario->email}})</option>
         @endforeach
       </select>
     </div>

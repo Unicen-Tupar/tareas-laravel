@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('main')
+@section('content')
   <a href="{{ route('tarea.index') }}">Volver</a>
   <h1>{{$category->name}}</h1>
   <ul class="list-group">
