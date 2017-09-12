@@ -19,7 +19,9 @@ class TareaPolicy
      */
     public function view(User $user, Tareas $tareas)
     {
-        //
+        if  ($user->id == $tareas->user_id){
+          return true;
+        }
     }
 
     /**
@@ -30,9 +32,13 @@ class TareaPolicy
      */
     public function create(User $user)
     {
-         if ($user->isManager{
-           return true;
-         }
+     
+    }
+
+    public function assignOtherUsers(User $user){
+      if ($user->isManager == 1){
+        return true;
+      }
     }
 
     /**
