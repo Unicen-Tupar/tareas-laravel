@@ -39,5 +39,10 @@ services:
     ports:
         - "33061:3306"
 
+  adminer:
+    image: adminer
+    ports:
+        - 8081:8080
+
 volumes:
   dbdata:
