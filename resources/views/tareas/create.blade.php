@@ -23,6 +23,7 @@
         @endforeach
       </select>
     </div>
+    @can('assign')
     <div class="form-group">
       <label for="user_id">Asignar a:</label>
       <select class="form-control"  name="user_id" id="user_id">
@@ -31,6 +32,7 @@
         @endforeach
       </select>
     </div>
+    @endcan
     <div class="form-group">
       <label for="imageToUpload">Imagen:</label>
       <input type="file" name="imagesToUpload[]" id="imageToUpload" multiple>
