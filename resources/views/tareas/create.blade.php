@@ -24,12 +24,17 @@
       </select>
     </div>
     <div class="form-group">
-      <label for="user_id">Asignar a:</label>
-      <select class="form-control"  name="user_id" id="user_id">
-        @foreach ($usuarios as $usuario)
-        <option value={{$usuario->id}}@if($usuario->id == Auth::id()) selected @endif>{{$usuario->name}} ({{$usuario->email}})</option>
-        @endforeach
-      </select>
+      @can('assignTasks', App\Tarea::class)
+        <label for="user_id">Asignar a:</label>
+        <select class="form-control"  name="user_id" id="user_id">
+          @foreach ($usuarios as $usuario)
+          <option value={{$usuario->id}}@if($usuario->id == Auth::id()) selected @endif>{{$usuario->name}} ({{$usuario->email}})</option>
+          @endforeach
+        </select>
+      @endcan
+      @cannot('assignTasks', App\Tarea::class)
+        <input type="hidden" name="user_id" value={{Auth::user()->id}}>
+      @endcannot
     </div>
     <button type="submit" class="btn btn-default">Crear</button>
   </form>
