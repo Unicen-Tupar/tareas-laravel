@@ -36,9 +36,6 @@ class TareaPolicy
     }
 
     public function assignOtherUsers(User $user){
-      var_dump($user->isManager);
-      $pepe = User::all();
-      var_dump($pepe);
       if ($user->isManager == 1){
         return true;
       }
