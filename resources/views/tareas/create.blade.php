@@ -24,7 +24,7 @@
       </select>
     </div>
     <label for="user_id">Asignar a:</label>
-    @can('assignOtherUsers')
+    @cannot('assignOtherUsers')
     <div class="form-group">
       <select class="form-control"  name="user_id" id="user_id">
         @foreach ($usuarios as $usuario)
