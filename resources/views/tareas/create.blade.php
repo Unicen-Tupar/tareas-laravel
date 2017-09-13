@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
   <a href="{{route('tarea.index')}}">Volver</a>
-  <form action="{{route('tarea.store')}}" method="post">
+  <form action="{{route('tarea.store')}}" method="post" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="form-group">
       <label for="nombre">Nombre:</label>
@@ -32,12 +32,20 @@
         @endforeach
       </select>
     </div>
+<<<<<<< HEAD
       <div class="form-group">
             <select disabled  id="listaDeshabilitada" class="form-control">
                <option value={{$usuarios->find(Auth::id())->id}}@if($usuarios->find(Auth::id())->id == Auth::id()) selected @endif>{{$usuarios->find(Auth::id())->name}} ({{$usuarios->find(Auth::id())->email}})</option>
             </select>
       </div>
     @endcan
+=======
+    <div class="form-group">
+      <label for="imageToUpload">Imagen:</label>
+      <input type="file" name="imagesToUpload[]" id="imageToUpload" multiple>
+    </div>
+
+>>>>>>> Ale/master
     <button type="submit" class="btn btn-default">Crear</button>
   </form>
 @endsection
