@@ -24,7 +24,7 @@
       </select>
     </div>
     <label for="user_id">Asignar a:</label>
-    @cannot('assignOtherUsers')
+    @can('assignOtherUsers')
     <div class="form-group">
       <select class="form-control"  name="user_id" id="user_id">
         @foreach ($usuarios as $usuario)
@@ -32,14 +32,14 @@
         @endforeach
       </select>
     </div>
-    @endcannot
-    @can('assignOtherUsers')
+    @endcan
+    @cannot('assignOtherUsers')
       <div class="form-group">
             <select disabled  id="listaDeshabilitada" class="form-control">
                <option value={{$usuarios->find(Auth::id())->id}}@if($usuarios->find(Auth::id())->id == Auth::id()) selected @endif>{{$usuarios->find(Auth::id())->name}} ({{$usuarios->find(Auth::id())->email}})</option>
             </select>
       </div>
-    @endcan
+    @endcannot
     <div class="form-group">
       <label for="imageToUpload">Imagen:</label>
       <input type="file" name="imagesToUpload[]" id="imageToUpload" multiple>
