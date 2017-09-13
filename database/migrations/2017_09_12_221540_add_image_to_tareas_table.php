@@ -14,7 +14,7 @@ class AddImageToTareasTable extends Migration
     public function up()
     {
         Schema::table('tareas', function(Blueprint $table){
-        $table->string('imagen')->nulleable();
+        $table->string('imagen')->nulleable()->default('');
         });
     }
 
@@ -27,6 +27,6 @@ class AddImageToTareasTable extends Migration
     {
       Schema::table('tareas', function(Blueprint $table){
       $table->dropColumn('imagen');
-    }
+    });
   }
 }
