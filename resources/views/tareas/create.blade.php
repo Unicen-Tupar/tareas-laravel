@@ -23,21 +23,24 @@
         @endforeach
       </select>
     </div>
-    @can('assign')
-    <div class="form-group">
-      <label for="user_id">Asignar a:</label>
-      <select class="form-control"  name="user_id" id="user_id">
-        @foreach ($usuarios as $usuario)
-        <option value={{$usuario->id}}@if($usuario->id == Auth::id()) selected @endif>{{$usuario->name}} ({{$usuario->email}})</option>
-        @endforeach
-      </select>
-    </div>
-    @endcan
-    <div class="form-group">
-      <label for="imageToUpload">Imagen:</label>
-      <input type="file" name="imagesToUpload[]" id="imageToUpload" multiple>
-    </div>
+    @can('assign', App\Tarea::class)
+      <div class="form-group">
+        <label for="user_id">Asignar a:</label>
+        <select class="form-control"  name="user_id" id="user_id">
+          @foreach ($usuarios as $usuario)
+            <option value={{$usuario->id}}@if($usuario->id == Auth::id()) selected @endif>{{$usuario->name}} ({{$usuario->email}})</option>
+            @endforeach
+          </select>
+        </div>
+      @endcan
+      @cannot('assign', App\Tarea::class)
+           <input type="hidden" name="user_id" value={{Auth::user()->id}}>
+      @endcannot
+        <div class="form-group">
+          <label for="imageToUpload">Imagen:</label>
+          <input type="file" name="imagesToUpload[]" id="imageToUpload" multiple>
+        </div>
 
-    <button type="submit" class="btn btn-default">Crear</button>
-  </form>
-@endsection
+        <button type="submit" class="btn btn-default">Crear</button>
+      </form>
+    @endsection

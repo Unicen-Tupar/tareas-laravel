@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Tarea;
+use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class TareaPolicy
@@ -57,8 +58,7 @@ class TareaPolicy
     }
 
     public function assign(User $user){
-      var_dump($user->admin);
-      if ($user->admin == true){
+      if ($user->admin){
         return true;
       }
     }

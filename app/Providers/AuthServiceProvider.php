@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Tarea;
+use App\Policies\TareaPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -14,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Tarea' => 'App\Policies\TareaPolicy',
+        Tarea::class => TareaPolicy::class,
     ];
 
     /**
