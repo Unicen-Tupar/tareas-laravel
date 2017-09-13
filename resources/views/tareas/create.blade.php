@@ -33,13 +33,13 @@
       </select>
     </div>
     @endcan
-    @can('assignOtherUsers',App\Tarea::class)
+    @cannot('assignOtherUsers',App\Tarea::class)
       <div class="form-group">
             <select disabled  id="listaDeshabilitada" class="form-control">
                <option value={{$usuarios->find(Auth::id())->id}}@if($usuarios->find(Auth::id())->id == Auth::id()) selected @endif>{{$usuarios->find(Auth::id())->name}} ({{$usuarios->find(Auth::id())->email}})</option>
             </select>
       </div>
-    @endcan
+    @endcannot
     <div class="form-group">
       <label for="imageToUpload">Imagen:</label>
       <input type="file" name="imagesToUpload[]" id="imageToUpload" multiple>
