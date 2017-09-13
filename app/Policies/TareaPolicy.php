@@ -33,6 +33,12 @@ class TareaPolicy
         //
     }
 
+    public function esmanager(User $user)
+    {
+      if ($user->manager == 1){
+        return true;
+    }
+
     /**
      * Determine whether the user can update the tarea.
      *
