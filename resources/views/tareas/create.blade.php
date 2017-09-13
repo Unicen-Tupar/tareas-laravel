@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
   <a href="{{route('tarea.index')}}">Volver</a>
-  <form action="{{route('tarea.store')}}" method="post">
+  <form action="{{route('tarea.store')}}" method="post" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="form-group">
       <label for="nombre">Nombre:</label>
@@ -31,6 +31,11 @@
         @endforeach
       </select>
     </div>
+    <div class="form-group">
+      <label for="imageToUpload">Imagen:</label>
+      <input type="file" name="imagesToUpload[]" id="imageToUpload" multiple>
+    </div>
+
     <button type="submit" class="btn btn-default">Crear</button>
   </form>
 @endsection
