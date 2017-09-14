@@ -20,4 +20,9 @@ class Tarea extends Model
     {
       return "$this->nombre - Asignada a: " . $this->user->name;
     }
+
+    public function imagenes()
+    {
+      return $this->hasMany('App\Imagen');
+    }
 }

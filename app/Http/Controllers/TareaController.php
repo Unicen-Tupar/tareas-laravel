@@ -58,13 +58,14 @@ class TareaController extends Controller
     public function store(Request $request)
     {
         $tarea = Tarea::create($request->all());
-        $request->input('campo');
-        foreach ($request->imagesToUpload as $image) {
-          $filename = $image->store('public');
-          Imagen::create([
-            'tarea_id' => $tarea->id,
-            'path' => $filename
-            ]);
+        if(isset($request->imagesToUpload)) {
+          foreach ($request->imagesToUpload as $image) {
+            $filename = $image->store('public');
+            Imagen::create([
+              'tarea_id' => $tarea->id,
+              'path' => $filename
+              ]);
+          }
         }
         return redirect('/');
     }
@@ -79,8 +80,10 @@ class TareaController extends Controller
     {
 
         $arr = [];
-        foreach ($tarea->imagenes as $imagen) {
-          $arr[] = Storage::url($imagen->path);
+        if(isset($tarea->imagenes)) {
+          foreach ($tarea->imagenes as $imagen) {
+            $arr[] = Storage::url($imagen->path);
+          }
         }
 
         $tarea->imagenes = $arr;
