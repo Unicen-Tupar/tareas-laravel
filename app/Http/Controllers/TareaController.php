@@ -67,6 +67,7 @@ class TareaController extends Controller
      */
     public function show(Tarea $tarea)
     {
+        $this->authorize('view', $tarea);
         return view('tareas.show',['tarea' => $tarea]);
     }
 

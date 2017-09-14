@@ -7,7 +7,7 @@
 <ul class="list-group">
   @foreach ($tareas as $tarea)
     <li class="list-group-item">
-      <a href="{{ route('tarea.show', $tarea) }}">{{$tarea->nombre}} | {{$tarea->nombre_categoria}}</a>
+      <a href="{{ route('tarea.show', $tarea) }}">{{$tarea->nombreCompleto()}} | {{$tarea->nombre_categoria}}</a>
       <div class="pull-right">
         <form action="{{route('tarea.destroy', $tarea)}}" method="post">
           {{ csrf_field() }}
