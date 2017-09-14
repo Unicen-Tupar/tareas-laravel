@@ -77,14 +77,17 @@ class TareaController extends Controller
      */
     public function show(Tarea $tarea)
     {
-      $arr = [];
-      foreach ($tarea->imagenes as $imagen) {
-        $arr[] = Storage::url($imagen->path);
-      }
 
-      $tarea->imagenes = $arr;
+        $arr = [];
+        foreach ($tarea->imagenes as $imagen) {
+          $arr[] = Storage::url($imagen->path);
+        }
 
-      return view('tareas.show',['tarea' => $tarea]);
+        $tarea->imagenes = $arr;
+
+        $this->authorize('view', $tarea);
+        return view('tareas.show',['tarea' => $tarea]);
+
     }
 
     /**

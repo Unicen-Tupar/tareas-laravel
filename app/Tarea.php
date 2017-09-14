@@ -12,7 +12,12 @@ class Tarea extends Model
       return $this->belongsTo('App\Category');
     }
 
-    public function imagenes(){
-      return $this->hasMany('App\Imagen');
+    public function user(){
+      return $this->belongsTo('App\User');
+    }
+
+    public  function nombreCompleto()
+    {
+      return "$this->nombre - Asignada a: " . $this->user->name;
     }
 }
