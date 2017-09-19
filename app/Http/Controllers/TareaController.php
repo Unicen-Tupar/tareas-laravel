@@ -6,8 +6,10 @@ use Auth;
 use App\Tarea;
 use App\Category;
 use App\User;
+use App\Imagen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class TareaController extends Controller
 {
@@ -55,7 +57,16 @@ class TareaController extends Controller
      */
     public function store(Request $request)
     {
-        Tarea::create($request->all());
+        $tarea = Tarea::create($request->all());
+        if(isset($request->imagesToUpload)) {
+          foreach ($request->imagesToUpload as $image) {
+            $filename = $image->store('public');
+            Imagen::create([
+              'tarea_id' => $tarea->id,
+              'path' => $filename
+              ]);
+          }
+        }
         return redirect('/');
     }
 
@@ -67,8 +78,19 @@ class TareaController extends Controller
      */
     public function show(Tarea $tarea)
     {
+
+        $arr = [];
+        if(isset($tarea->imagenes)) {
+          foreach ($tarea->imagenes as $imagen) {
+            $arr[] = Storage::url($imagen->path);
+          }
+        }
+
+        $tarea->imagenes = $arr;
+
         $this->authorize('view', $tarea);
         return view('tareas.show',['tarea' => $tarea]);
+
     }
 
     /**
